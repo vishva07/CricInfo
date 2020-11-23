@@ -1,13 +1,13 @@
 package com.vishva.CricInfo.service.impl;
 
-import com.vishva.CricInfo.model.Delivery;
-import com.vishva.CricInfo.model.Extras;
-import com.vishva.CricInfo.model.Inning;
-import com.vishva.CricInfo.model.Over;
+import com.vishva.CricInfo.entity.DeliveryEntity;
+import com.vishva.CricInfo.entity.InningEntity;
+import com.vishva.CricInfo.entity.OverEntity;
+import com.vishva.CricInfo.entity.PlayerEntity;
 import com.vishva.CricInfo.repository.DeliveryRepository;
-import com.vishva.CricInfo.repository.ExtrasRepository;
 import com.vishva.CricInfo.repository.InningRepository;
 import com.vishva.CricInfo.repository.OverRepository;
+import com.vishva.CricInfo.repository.PlayerRepository;
 import com.vishva.CricInfo.service.CricDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,31 +19,36 @@ public class CricDataServiceImpl implements CricDataService {
     DeliveryRepository deliveryRepository;
 
     @Autowired
-    ExtrasRepository extrasRepository;
-
-    @Autowired
     InningRepository inningRepository;
 
     @Autowired
     OverRepository overRepository;
 
+    @Autowired
+    PlayerRepository playerRepository;
+
+
     @Override
-    public void saveDelivery(Delivery delivery) {
-        deliveryRepository.save(delivery);
+    public void saveDelivery(DeliveryEntity deliveryEntity) {
+
+        deliveryRepository.save(deliveryEntity);
     }
 
     @Override
-    public void saveExtras(Extras extras) {
-        extrasRepository.save(extras);
+    public void saveInning(InningEntity inningEntity) {
+
+        inningRepository.save(inningEntity);
     }
 
     @Override
-    public void saveInning(Inning inning) {
-        inningRepository.save(inning);
+    public void saveOver(OverEntity overEntity) {
+
+        overRepository.save(overEntity);
     }
 
     @Override
-    public void saveOver(Over over) {
-        overRepository.save(over);
+    public void savePlayer(PlayerEntity playerEntity) {
+
+        playerRepository.save(playerEntity);
     }
 }

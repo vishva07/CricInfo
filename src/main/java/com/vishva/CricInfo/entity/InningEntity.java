@@ -1,29 +1,32 @@
-package com.vishva.CricInfo.model;
+package com.vishva.CricInfo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Data
-@Table(name = "over")
+@Table(name = "inning")
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Over {
+public class InningEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private int runs;
+    private int balls;
+    private String team;
+    /*@OneToMany(mappedBy = "inning")
+    private List<Over> overs;*/
+    private int total_score;
     private int extras;
-    //@OneToMany(targetEntity = Delivery.class)
-    //@JoinColumn(name = "delivery_id")
-    private long deliveries;
-
+    private int wickets;
 }

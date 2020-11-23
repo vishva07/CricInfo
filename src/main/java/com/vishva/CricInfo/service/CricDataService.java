@@ -1,15 +1,14 @@
 package com.vishva.CricInfo.service;
 
-
-import com.vishva.CricInfo.model.Delivery;
-import com.vishva.CricInfo.model.Extras;
-import com.vishva.CricInfo.model.Inning;
-import com.vishva.CricInfo.model.Over;
+import com.vishva.CricInfo.entity.DeliveryEntity;
+import com.vishva.CricInfo.entity.InningEntity;
+import com.vishva.CricInfo.entity.OverEntity;
+import com.vishva.CricInfo.entity.PlayerEntity;
 
 public interface CricDataService {
 
-    void saveDelivery(Delivery delivery);
-    void saveExtras(Extras extras);
-    void saveInning(Inning inning);
-    void saveOver(Over over);
+    void saveDelivery(DeliveryEntity deliveryEntity);
+    void saveInning(InningEntity inningEntity);
+    void saveOver(OverEntity overEntity);
+    void savePlayer(PlayerEntity playerEntity);
 }
