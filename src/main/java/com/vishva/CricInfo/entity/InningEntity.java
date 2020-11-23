@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.List;
 
 @Data
 @Table(name = "inning")
@@ -24,8 +24,8 @@ public class InningEntity {
 
     private int balls;
     private String team;
-    /*@OneToMany(mappedBy = "inning")
-    private List<Over> overs;*/
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<OverEntity> overs;
     private int total_score;
     private int extras;
     private int wickets;

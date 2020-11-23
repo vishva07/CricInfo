@@ -24,7 +24,7 @@ public class OverEntity {
     private int runs;
     private int extras;
     @OneToMany(cascade = CascadeType.ALL)
-    private List<DeliveryEntity> deliveryEntityList = new ArrayList<>();
+    private List<DeliveryEntity> deliveryEntityList;
     /*@OneToMany(mappedBy = "over")
     private List<Delivery> deliveries;*/
     /*@ManyToOne

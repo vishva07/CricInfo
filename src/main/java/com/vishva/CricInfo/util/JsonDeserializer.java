@@ -1,4 +1,4 @@
-package com.vishva.CricInfo;
+package com.vishva.CricInfo.util;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
