@@ -44,6 +44,7 @@ public class CricInfoApplication {
 			Gson gson = builder.create();
 
 			for(File file : listOfFiles) {
+				//insertData(file, gson, cricDataService, playerRepository);
 				ExecutorService pool = Executors.newFixedThreadPool(5);
 				pool.execute(()-> {
 					try {
@@ -52,7 +53,7 @@ public class CricInfoApplication {
 						e.printStackTrace();
 					}
 				});
-				pool.shutdownNow();
+				pool.shutdown();
 				pool.awaitTermination(Integer.MAX_VALUE, TimeUnit.MICROSECONDS);
 			}
 			System.out.printf("Time taken to insert data in db: %f sec", (System.currentTimeMillis() - time) / 1000.0);

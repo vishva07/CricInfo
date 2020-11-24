@@ -25,6 +25,7 @@ public class InningEntity {
     private int balls;
     private String team;
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "inning_id", nullable = false)
     private List<OverEntity> overs;
     private int total_score;
     private int extras;
