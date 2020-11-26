@@ -6,7 +6,6 @@ import com.vishva.CricInfo.model.Extras;
 import com.vishva.CricInfo.model.Inning;
 import com.vishva.CricInfo.model.Runs;
 import com.vishva.CricInfo.repository.PlayerRepository;
-
 import java.util.List;
 
 public class CreateEntity {
@@ -17,7 +16,7 @@ public class CreateEntity {
             deliveryEntity.setBatsman(getPlayerId(delivery.getBatsman(), playerRepository));
         else {
             PlayerEntity playerEntity = new PlayerEntity();
-            playerEntity.setPlayer_name(delivery.getBatsman());
+            playerEntity.setPlayerName(delivery.getBatsman());
             playerRepository.save(playerEntity);
             deliveryEntity.setBatsman(getPlayerId(delivery.getBatsman(), playerRepository));
         }
@@ -25,7 +24,7 @@ public class CreateEntity {
             deliveryEntity.setBowler(getPlayerId(delivery.getBowler(), playerRepository));
         else {
             PlayerEntity playerEntity = new PlayerEntity();
-            playerEntity.setPlayer_name(delivery.getBowler());
+            playerEntity.setPlayerName(delivery.getBowler());
             playerRepository.save(playerEntity);
             deliveryEntity.setBowler(getPlayerId(delivery.getBowler(), playerRepository));
         }
@@ -33,7 +32,7 @@ public class CreateEntity {
             deliveryEntity.setNon_striker(getPlayerId(delivery.getNon_striker(), playerRepository));
         else {
             PlayerEntity playerEntity = new PlayerEntity();
-            playerEntity.setPlayer_name(delivery.getNon_striker());
+            playerEntity.setPlayerName(delivery.getNon_striker());
             playerRepository.save(playerEntity);
             deliveryEntity.setNon_striker(getPlayerId(delivery.getNon_striker(), playerRepository));
         }
@@ -69,7 +68,7 @@ public class CreateEntity {
         return extrasEntity;
     }
 
-    public static OverEntity over(Delivery delivery, int extras, int t_runs, List<DeliveryEntity> deliveryEntities) {
+    public static OverEntity over(int extras, int t_runs, List<DeliveryEntity> deliveryEntities) {
         OverEntity overEntity = new OverEntity();
         overEntity.setRuns(t_runs);
         overEntity.setExtras(extras);
@@ -79,11 +78,9 @@ public class CreateEntity {
 
     public static int getPlayerId(String player, PlayerRepository playerRepository) {
         if(playerRepository != null) {
-            Iterable<PlayerEntity> playerList = playerRepository.findAll();
-            for(PlayerEntity p : playerList) {
-                if(p.getPlayer_name().equals(player))
-                    return p.getId();
-            }
+            PlayerEntity playerEntity = playerRepository.findByPlayerName(player);
+            if(playerEntity != null)
+                return playerEntity.getId();
         }
         return 0;
     }

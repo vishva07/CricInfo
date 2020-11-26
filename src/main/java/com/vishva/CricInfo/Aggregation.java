@@ -30,7 +30,7 @@ public class Aggregation {
                 deliveryEntities.add(deliveryEntity);
             } else {
                 pre = curr;
-                OverEntity overEntity = CreateEntity.over(del, extras, t_runs, deliveryEntities);
+                OverEntity overEntity = CreateEntity.over(extras, t_runs, deliveryEntities);
                 overEntities.add(overEntity);
                 extras = 0;
                 t_runs = 0;

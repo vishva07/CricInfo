@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PlayerRepository extends CrudRepository<PlayerEntity, Integer> {
 
+    PlayerEntity findByPlayerName(String name);
 }
