@@ -1,10 +1,13 @@
 package com.vishva.CricInfo;
 
 import com.google.gson.*;
-import com.vishva.CricInfo.entity.*;
+import com.vishva.CricInfo.dto.innings.Delivery;
+import com.vishva.CricInfo.dto.innings.Inning;
 import com.vishva.CricInfo.model.*;
+import com.vishva.CricInfo.dto.*;
 import com.vishva.CricInfo.repository.PlayerRepository;
 import com.vishva.CricInfo.service.CricDataService;
+import com.vishva.CricInfo.util.CreateEntity;
 import com.vishva.CricInfo.util.FileFetcher;
 import com.vishva.CricInfo.util.InningDeserializer;
 import com.vishva.CricInfo.util.YamlConverter;
@@ -16,6 +19,7 @@ import org.springframework.context.annotation.Bean;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -35,7 +39,7 @@ public class CricInfoApplication {
 	public CommandLineRunner runner(CricDataService cricDataService, PlayerRepository playerRepository) {
 		return (args) -> {
 			FileFetcher fileFetcher = new FileFetcher();
-			List<File> listOfFiles = fileFetcher.getFilesFromFolder("data/");
+			List<File> listOfFiles = fileFetcher.getFilesFromFolder("SampleData/");
 			assert listOfFiles != null;
 			long time = System.currentTimeMillis();
 
@@ -45,6 +49,7 @@ public class CricInfoApplication {
 
 			for(File file : listOfFiles) {
 				//insertData(file, gson, cricDataService, playerRepository);
+				//System.out.println(file.getName());
 				ExecutorService pool = Executors.newFixedThreadPool(5);
 				pool.execute(()-> {
 					try {
@@ -64,13 +69,16 @@ public class CricInfoApplication {
 
 		String yaml = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
 		String json = YamlConverter.convertYamlToJson(yaml);
-		MatchData match = gson.fromJson(json, MatchData.class);
+		Match match = gson.fromJson(json, Match.class);
 		List<HashMap<String, Inning>> inningArray = match.getInnings();
+		List<InningEntity> inningEntities = new ArrayList<>();
 		for (HashMap<String, Inning> inningObject : inningArray) {
 			Inning inn = inningObject.get(inningObject.keySet().toArray()[0]);
 			List<Delivery> deliveryArray = inn.getDeliveries();
 			InningEntity inningEntity = Aggregation.populateData(inn, deliveryArray, playerRepository, cricDataService);
-			cricDataService.saveInning(inningEntity);
+			inningEntities.add(inningEntity);
 		}
+		MatchEntity matchEntity = CreateEntity.createMatchEntityFromData(match, inningEntities);
+		cricDataService.saveMatch(matchEntity);
 	}
 }

@@ -1,10 +1,12 @@
 package com.vishva.CricInfo.service;
 
-import com.vishva.CricInfo.entity.InningEntity;
-import com.vishva.CricInfo.entity.PlayerEntity;
+import com.vishva.CricInfo.exchange.CricInfoRequest;
+import com.vishva.CricInfo.model.MatchEntity;
+import com.vishva.CricInfo.model.PlayerEntity;
 
 public interface CricDataService {
 
-    void saveInning(InningEntity inningEntity);
+    void saveMatch(MatchEntity matchEntity);
     void savePlayer(PlayerEntity playerEntity);
+    MatchEntity getMatch(CricInfoRequest cricInfoRequest);
 }

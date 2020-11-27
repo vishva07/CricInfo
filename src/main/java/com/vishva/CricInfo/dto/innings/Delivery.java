@@ -1,4 +1,4 @@
-package com.vishva.CricInfo.model;
+package com.vishva.CricInfo.dto.innings;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;

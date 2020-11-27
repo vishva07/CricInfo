@@ -1,11 +1,11 @@
 package com.vishva.CricInfo;
 
-import com.vishva.CricInfo.entity.DeliveryEntity;
-import com.vishva.CricInfo.entity.InningEntity;
-import com.vishva.CricInfo.entity.OverEntity;
-import com.vishva.CricInfo.model.Delivery;
-import com.vishva.CricInfo.model.Inning;
-import com.vishva.CricInfo.model.Runs;
+import com.vishva.CricInfo.model.DeliveryEntity;
+import com.vishva.CricInfo.model.InningEntity;
+import com.vishva.CricInfo.model.OverEntity;
+import com.vishva.CricInfo.dto.innings.Delivery;
+import com.vishva.CricInfo.dto.innings.Inning;
+import com.vishva.CricInfo.dto.innings.Runs;
 import com.vishva.CricInfo.repository.PlayerRepository;
 import com.vishva.CricInfo.service.CricDataService;
 import com.vishva.CricInfo.util.CreateEntity;

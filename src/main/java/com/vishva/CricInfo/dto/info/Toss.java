@@ -1,13 +1,11 @@
-package com.vishva.CricInfo.model;
+package com.vishva.CricInfo.dto.info;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Extras {
-
-    private int wides;
-    private int legbyes;
-    private int noballs;
+public class Toss {
+    private String decision;
+    private String winner;
 }
