@@ -1,22 +1,49 @@
 package com.vishva.CricInfo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
-@Data
-@Table(name = "Player", indexes = {@Index(name = "playerIndex", columnList = "playerName")})
+@Getter
+@Setter
+@Table(name = "Player", indexes = {@Index(name = "playerIndex", columnList = "name")})
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
-@NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class PlayerEntity {
 
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private String playerName;
+    @Column(unique = true)
+    private String playerName;*/
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "player_id")
+    private Long id;
+
+    @Column(unique = true)
+    private String name;
+
+    private String team;
+
+    private String type;
+
+    @ToString.Exclude
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "player_match",
+            joinColumns = @JoinColumn(name = "player_id"),
+            inverseJoinColumns = @JoinColumn(name = "match_id"))
+    private Set<MatchEntity> matchEntitySet = new HashSet<>();
+
+    public PlayerEntity(String playerName, String team, String type) {
+        this.name = playerName;
+        this.team = team;
+        this.type = type;
+    }
 }

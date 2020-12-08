@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/")
@@ -18,14 +19,15 @@ public class CricInfoController {
 
     @GetMapping("/home")
     public String index() {
+
         return "Welcome to CricInfo!";
     }
 
     @PostMapping("/match")
     public ResponseEntity<?> getMatch(@Valid @RequestBody CricInfoRequest cricInfoRequest) {
 
-        MatchEntity matchEntity = cricDataService.getMatch(cricInfoRequest);
+        List<MatchEntity> matchEntities = cricDataService.getMatchEntities(cricInfoRequest);
 
-        return ResponseEntity.ok().body(cricInfoRequest);
+        return ResponseEntity.ok().body(matchEntities);
     }
 }

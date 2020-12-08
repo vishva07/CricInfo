@@ -8,6 +8,7 @@ import com.vishva.CricInfo.repository.PlayerRepository;
 import com.vishva.CricInfo.service.CricDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class CricDataServiceImpl implements CricDataService {
@@ -20,18 +21,16 @@ public class CricDataServiceImpl implements CricDataService {
 
     @Override
     public void saveMatch(MatchEntity matchEntity) {
-
         matchRepository.save(matchEntity);
     }
 
     @Override
     public void savePlayer(PlayerEntity playerEntity) {
-
         playerRepository.save(playerEntity);
     }
 
     @Override
-    public MatchEntity getMatch(CricInfoRequest cricInfoRequest) {
+    public List<MatchEntity> getMatchEntities(CricInfoRequest cricInfoRequest) {
 
         return matchRepository.getMatchEntity(cricInfoRequest.getVenue(), cricInfoRequest.getStartDate(), cricInfoRequest.getEndDate());
     }

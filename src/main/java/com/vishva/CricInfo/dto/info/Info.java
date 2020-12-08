@@ -27,13 +27,13 @@ public class Info {
     private float overs;
 
     @SerializedName("player_of_match")
-    private String[] playerOfMatch;
+    private List<String> playerOfMatch;
 
     private List<String> teams;
 
     private Toss toss;
 
-    private String[] umpires;
+    private List<String> umpires;
 
     private String venue;
 }

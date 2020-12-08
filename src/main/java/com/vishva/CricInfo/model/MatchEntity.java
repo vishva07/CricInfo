@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
-
 import javax.persistence.*;
 import java.util.*;
 
@@ -18,6 +17,8 @@ import java.util.*;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
+@TypeDef(name = "list-array",
+        typeClass = ListArrayType.class)
 public class MatchEntity {
 
     @Id
@@ -42,19 +43,25 @@ public class MatchEntity {
     @JoinColumn(name = "outcome_id")
     private OutcomeEntity outcome;
 
-    private String[] playerOfMatch;
+    @Type(type = "list-array")
+    @Column(name = "player_of_match",
+            columnDefinition = "text[]")
+    private List<String> playerOfMatch;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "toss_id")
     private TossEntity toss;
 
-    private String[] umpires;
+    @Type(type = "list-array")
+    @Column(name = "umpires",
+            columnDefinition = "text[]")
+    private List<String> umpires;
 
     private String venue;
 
-    /*@ToString.Exclude
+    @ToString.Exclude
     @ManyToMany(mappedBy = "matchEntitySet")
-    private Set<PlayerEntity> playerEntitySet = new HashSet<>();*/
+    private Set<PlayerEntity> playerEntitySet = new HashSet<>();
 
     private String tournament;
 

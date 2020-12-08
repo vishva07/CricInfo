@@ -1,0 +1,139 @@
+---
+meta:
+  data_version: 0.9
+  created: 2014-12-14
+  revision: 3
+info:
+  dates:
+    - 2014-10-22
+    - 2014-10-23
+    - 2014-10-24
+    - 2014-10-25
+    - 2014-10-26
+  gender: male
+  match_type: Test
+  neutral_venue: 1
+  outcome:
+    by:
+      runs: 221
+    winner: Pakistan
+  player_of_match:
+    - Younis Khan
+  teams:
+    - Australia
+    - Pakistan
+  toss:
+    decision: bat
+    winner: Pakistan
+  umpires:
+    - M Erasmus
+    - RA Kettleborough
+  venue: Dubai International Cricket Stadium
+innings:
+  - 1st innings:
+      team: Pakistan
+      deliveries:
+        - 0.1:
+            batsman: Ahmed Shehzad
+            bowler: MG Johnson
+            non_striker: Mohammad Hafeez
+            runs:
+              batsman: 0
+              extras: 0
+              total: 0
+        - 0.2:
+            batsman: Ahmed Shehzad
+            bowler: MG Johnson
+            non_striker: Mohammad Hafeez
+            runs:
+              batsman: 0
+              extras: 0
+              total: 0
+        - 0.3:
+            batsman: Ahmed Shehzad
+            bowler: MG Johnson
+            extras:
+              legbyes: 1
+            non_striker: Mohammad Hafeez
+            runs:
+              batsman: 0
+              extras: 1
+              total: 1
+        - 0.4:
+            batsman: Mohammad Hafeez
+            bowler: MG Johnson
+            non_striker: Ahmed Shehzad
+            runs:
+              batsman: 0
+              extras: 0
+              total: 0
+        - 0.5:
+            batsman: Mohammad Hafeez
+            bowler: MG Johnson
+            non_striker: Ahmed Shehzad
+            runs:
+              batsman: 0
+              extras: 0
+              total: 0
+            wicket:
+              kind: lbw
+              player_out: Mohammad Hafeez
+        - 0.6:
+            batsman: Azhar Ali
+            bowler: MG Johnson
+            non_striker: Ahmed Shehzad
+            runs:
+              batsman: 0
+              extras: 0
+              total: 0
+  - 2nd innings:
+      team: Australia
+      deliveries:
+        - 0.1:
+            batsman: CJL Rogers
+            bowler: Rahat Ali
+            non_striker: DA Warner
+            runs:
+              batsman: 0
+              extras: 0
+              total: 0
+        - 0.2:
+            batsman: CJL Rogers
+            bowler: Rahat Ali
+            non_striker: DA Warner
+            runs:
+              batsman: 0
+              extras: 0
+              total: 0
+        - 0.3:
+            batsman: CJL Rogers
+            bowler: Rahat Ali
+            non_striker: DA Warner
+            runs:
+              batsman: 0
+              extras: 0
+              total: 0
+        - 0.4:
+            batsman: CJL Rogers
+            bowler: Rahat Ali
+            non_striker: DA Warner
+            runs:
+              batsman: 0
+              extras: 0
+              total: 0
+        - 0.5:
+            batsman: CJL Rogers
+            bowler: Rahat Ali
+            non_striker: DA Warner
+            runs:
+              batsman: 1
+              extras: 0
+              total: 1
+        - 0.6:
+            batsman: DA Warner
+            bowler: Rahat Ali
+            non_striker: CJL Rogers
+            runs:
+              batsman: 0
+              extras: 0
+              total: 0

@@ -1,4 +1,4 @@
-package com.vishva.CricInfo.util;
+/*package com.vishva.CricInfo.util;
 
 import com.vishva.CricInfo.dto.Match;
 import com.vishva.CricInfo.dto.info.Info;
@@ -10,38 +10,47 @@ import com.vishva.CricInfo.dto.innings.Extras;
 import com.vishva.CricInfo.dto.innings.Inning;
 import com.vishva.CricInfo.dto.innings.Runs;
 import com.vishva.CricInfo.repository.PlayerRepository;
-
+import com.vishva.CricInfo.service.CricDataService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+@Component
 public class CreateEntity {
 
-    public static DeliveryEntity delivery(Delivery delivery, PlayerRepository playerRepository) {
+    @Autowired
+    CricDataService cricDataService;
+
+    @Autowired
+    PlayerRepository playerRepository;
+
+    public DeliveryEntity delivery(Delivery delivery) {
         DeliveryEntity deliveryEntity = new DeliveryEntity();
-        if(getPlayerId(delivery.getBatsman(), playerRepository) != 0)
-            deliveryEntity.setBatsman(getPlayerId(delivery.getBatsman(), playerRepository));
+        if(getPlayerId(delivery.getBatsman()) != 0)
+            deliveryEntity.setBatsman(getPlayerId(delivery.getBatsman()));
         else {
             PlayerEntity playerEntity = new PlayerEntity();
             playerEntity.setPlayerName(delivery.getBatsman());
-            playerRepository.save(playerEntity);
-            deliveryEntity.setBatsman(getPlayerId(delivery.getBatsman(), playerRepository));
+            cricDataService.savePlayer(playerEntity);
+            deliveryEntity.setBatsman(getPlayerId(delivery.getBatsman()));
         }
-        if(getPlayerId(delivery.getBowler(), playerRepository) != 0)
-            deliveryEntity.setBowler(getPlayerId(delivery.getBowler(), playerRepository));
+        if(getPlayerId(delivery.getBowler()) != 0)
+            deliveryEntity.setBowler(getPlayerId(delivery.getBowler()));
         else {
             PlayerEntity playerEntity = new PlayerEntity();
             playerEntity.setPlayerName(delivery.getBowler());
-            playerRepository.save(playerEntity);
-            deliveryEntity.setBowler(getPlayerId(delivery.getBowler(), playerRepository));
+            cricDataService.savePlayer(playerEntity);
+            deliveryEntity.setBowler(getPlayerId(delivery.getBowler()));
         }
-        if(getPlayerId(delivery.getNon_striker(), playerRepository) != 0)
-            deliveryEntity.setNon_striker(getPlayerId(delivery.getNon_striker(), playerRepository));
+        if(getPlayerId(delivery.getNon_striker()) != 0)
+            deliveryEntity.setNon_striker(getPlayerId(delivery.getNon_striker()));
         else {
             PlayerEntity playerEntity = new PlayerEntity();
             playerEntity.setPlayerName(delivery.getNon_striker());
-            playerRepository.save(playerEntity);
-            deliveryEntity.setNon_striker(getPlayerId(delivery.getNon_striker(), playerRepository));
+            cricDataService.savePlayer(playerEntity);
+            deliveryEntity.setNon_striker(getPlayerId(delivery.getNon_striker()));
         }
         Runs runs = delivery.getRuns();
         Extras extras = delivery.getExtras();
@@ -52,7 +61,7 @@ public class CreateEntity {
         return deliveryEntity;
     }
 
-    public static InningEntity inning(Inning inning, int balls, int extinn, int runsinn, int wicket, List<OverEntity> overEntities) {
+    public InningEntity inning(Inning inning, int balls, int extinn, int runsinn, int wicket, List<OverEntity> overEntities) {
         InningEntity inningEntity = new InningEntity();
         inningEntity.setTeam(inning.getTeam());
         inningEntity.setBalls(balls);
@@ -63,19 +72,16 @@ public class CreateEntity {
         return inningEntity;
     }
 
-    public static ExtrasEntity extras(Delivery delivery) {
+    public ExtrasEntity extras(Delivery delivery) {
         ExtrasEntity extrasEntity = new ExtrasEntity();
         Extras extras = delivery.getExtras();
-        if(extras.getWides() != 0)
-            extrasEntity.setWides(extras.getWides());
-        if(extras.getNoballs() != 0)
-            extrasEntity.setNoballs(extras.getNoballs());
-        if(extras.getLegbyes() != 0)
-            extrasEntity.setLegbyes(extras.getLegbyes());
+        extrasEntity.setWides(extras.getWides());
+        extrasEntity.setNoballs(extras.getNoballs());
+        extrasEntity.setLegbyes(extras.getLegbyes());
         return extrasEntity;
     }
 
-    public static OverEntity over(int extras, int t_runs, List<DeliveryEntity> deliveryEntities) {
+    public OverEntity over(int extras, int t_runs, List<DeliveryEntity> deliveryEntities) {
         OverEntity overEntity = new OverEntity();
         overEntity.setRuns(t_runs);
         overEntity.setExtras(extras);
@@ -83,7 +89,7 @@ public class CreateEntity {
         return overEntity;
     }
 
-    public static int getPlayerId(String player, PlayerRepository playerRepository) {
+    public int getPlayerId(String player) {
         if(playerRepository != null) {
             PlayerEntity playerEntity = playerRepository.findByPlayerName(player);
             if(playerEntity != null)
@@ -92,9 +98,9 @@ public class CreateEntity {
         return 0;
     }
 
-    private static MatchEntity matchEntity;
+    private MatchEntity matchEntity;
 
-    public static MatchEntity createMatchEntityFromData(Match match, List<InningEntity> inningEntities) {
+    public MatchEntity createMatchEntityFromData(Match match, List<InningEntity> inningEntities) {
         matchEntity = new MatchEntity();
 
         Info info = match.getInfo();
@@ -114,12 +120,12 @@ public class CreateEntity {
         return matchEntity;
     }
 
-    private static void setDates(List<Date> dates) {
+    private void setDates(List<Date> dates) {
         matchEntity.setStartDate(dates.get(0));
         matchEntity.setEndDate(dates.get(dates.size() - 1));
     }
 
-    private static OutcomeEntity getOutcomeFromInfo(Outcome outcome) {
+    private OutcomeEntity getOutcomeFromInfo(Outcome outcome) {
         OutcomeEntity outcomeEntity = new OutcomeEntity();
         if(outcome.getBy() != null) {
             outcomeEntity.setRuns(outcome.getBy().getRuns());
@@ -132,10 +138,11 @@ public class CreateEntity {
         return outcomeEntity;
     }
 
-    private static TossEntity getTossFromInfo(Toss toss) {
+    private TossEntity getTossFromInfo(Toss toss) {
         TossEntity tossEntity = new TossEntity();
         tossEntity.setWinner(toss.getWinner());
         tossEntity.setDecision(toss.getDecision());
         return tossEntity;
     }
 }
+*/
