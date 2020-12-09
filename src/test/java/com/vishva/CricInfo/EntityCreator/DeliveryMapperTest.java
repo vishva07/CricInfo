@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
 public class DeliveryMapperTest {
@@ -57,5 +57,7 @@ public class DeliveryMapperTest {
         assertEquals("Ahmed Shehzad", deliveryEntity.getBatsman());
         assertEquals("MG Johnson", deliveryEntity.getBowler());
         assertEquals("Mohammad Hafeez", deliveryEntity.getNon_striker());
+        verify(extrasMapper, times(1)).createExtras(delivery);
+        verifyNoMoreInteractions(extrasMapper);
     }
 }

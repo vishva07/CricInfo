@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
 public class OverMapperTest {
@@ -54,5 +54,7 @@ public class OverMapperTest {
         List<OverEntity> overEntityList = overMapper.createOver(deliveryList);
         assertEquals(1, overEntityList.get(0).getRuns());
         assertEquals(1, overEntityList.get(0).getExtras());
+        verify(deliveryMapper, times(870)).createDelivery(any());
+        verifyNoMoreInteractions(deliveryMapper);
     }
 }
