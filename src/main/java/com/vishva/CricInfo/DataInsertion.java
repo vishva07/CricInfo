@@ -41,6 +41,9 @@ public class DataInsertion {
     @Autowired
     private Gson gson;
 
+    private final ReentrantLock reentrantLock = new ReentrantLock();
+
+
     public void insertData(String json) {
         Match match = gson.fromJson(json, Match.class);
         List<HashMap<String, Inning>> inningArray = match.getInnings();
@@ -53,8 +56,6 @@ public class DataInsertion {
         }
         MatchEntity matchEntity = matchMapper.createMatchEntityFromData(match);
         matchEntity.setInningEntities(inningEntities);
-
-        ReentrantLock reentrantLock = new ReentrantLock();
 
         Set<PlayerEntity> playerEntities = playerMapper.getPlayerEntities(match.getInfo().getTeams(),
                 match.getInnings());

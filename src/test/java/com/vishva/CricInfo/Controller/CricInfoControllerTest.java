@@ -3,7 +3,7 @@ package com.vishva.CricInfo.Controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vishva.CricInfo.CricInfoApplication;
 import com.vishva.CricInfo.controller.CricInfoController;
-import com.vishva.CricInfo.exchange.CricInfoRequest;
+import com.vishva.CricInfo.exchange.MatchRequest;
 import com.vishva.CricInfo.repository.MatchRepository;
 import com.vishva.CricInfo.service.impl.CricDataServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,8 +43,8 @@ public class CricInfoControllerTest {
 
     @Test
     public void invalidStartDateBadRequest() throws Exception {
-        CricInfoRequest cricInfoRequest = new CricInfoRequest("Dubai International Cricket Stadium", new Date(30-11-2014), new Date(2014-11-30));
-        String jsonRequest = objectMapper.writeValueAsString(cricInfoRequest);
+        MatchRequest matchRequest = new MatchRequest("Dubai International Cricket Stadium", new Date(30-11-2014), new Date(2014-11-30));
+        String jsonRequest = objectMapper.writeValueAsString(matchRequest);
         mockMvc.perform(post("/match").content(jsonRequest)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
@@ -52,8 +52,8 @@ public class CricInfoControllerTest {
 
     @Test
     public void invalidEndDateBadRequest() throws Exception {
-        CricInfoRequest cricInfoRequest = new CricInfoRequest("Dubai International Cricket Stadium", new Date(2016-10-07), new Date(07-10-2016));
-        String jsonRequest = objectMapper.writeValueAsString(cricInfoRequest);
+        MatchRequest matchRequest = new MatchRequest("Dubai International Cricket Stadium", new Date(2016-10-07), new Date(07-10-2016));
+        String jsonRequest = objectMapper.writeValueAsString(matchRequest);
         mockMvc.perform(post("/match").content(jsonRequest)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());

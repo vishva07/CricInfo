@@ -1,5 +1,6 @@
 package com.vishva.CricInfo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import javax.persistence.*;
@@ -15,13 +16,6 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class PlayerEntity {
 
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
-    @Column(unique = true)
-    private String playerName;*/
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "player_id")
@@ -35,6 +29,7 @@ public class PlayerEntity {
     private String type;
 
     @ToString.Exclude
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "player_match",
             joinColumns = @JoinColumn(name = "player_id"),

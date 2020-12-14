@@ -69,12 +69,12 @@ public class MatchEntity {
     @JoinColumn(name = "match_id", nullable = false)
     private List<InningEntity> inningEntities = new ArrayList<>();
 
-    /*
+
     @Type(type = "list-array")
     @Column(
             name = "teams",
-            columnDefinition = "int[]"
+            columnDefinition = "text[]"
     )
-    private List<Integer> teams;
-     */
+    private List<String> teams;
+
 }

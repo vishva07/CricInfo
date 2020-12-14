@@ -27,11 +27,16 @@ public class OverMapper {
             if(deliveryDetails != null) {
                 int currOver = deliveryDetails[0];
                 if(currOver > preOver) {
+                    preOver = currOver;
                     OverEntity overEntity = new OverEntity();
                     overEntity.setRuns(runsInOver);
                     overEntity.setExtras(extrasInOver);
                     overEntity.setDeliveryEntityList(deliveryEntities);
                     overEntityList.add(overEntity);
+                    deliveryEntities = new ArrayList<>();
+                    extrasInOver = delivery.getRuns().getExtras();
+                    runsInOver = delivery.getRuns().getTotal();
+                    deliveryEntities.add(deliveryEntity);
                 }
                 else{
                     Runs runs = delivery.getRuns();

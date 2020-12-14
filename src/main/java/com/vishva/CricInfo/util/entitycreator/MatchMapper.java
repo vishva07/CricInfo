@@ -5,10 +5,7 @@ import com.vishva.CricInfo.dto.info.Info;
 import com.vishva.CricInfo.dto.info.Outcome;
 import com.vishva.CricInfo.dto.info.Toss;
 import com.vishva.CricInfo.dto.innings.Inning;
-import com.vishva.CricInfo.model.InningEntity;
-import com.vishva.CricInfo.model.MatchEntity;
-import com.vishva.CricInfo.model.OutcomeEntity;
-import com.vishva.CricInfo.model.TossEntity;
+import com.vishva.CricInfo.model.*;
 import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.HashMap;
@@ -34,6 +31,7 @@ public class MatchMapper {
         matchEntity.setToss(getTossFromInfo(info.getToss()));
         matchEntity.setUmpires(info.getUmpires());
         matchEntity.setVenue(info.getVenue());
+        matchEntity.setTeams(info.getTeams());
         //matchEntity.setPlayerEntitySet(getPlayerEntities(info.getTeams(), innings));
         //matchEntity.setInningEntities(inningEntities);
         return matchEntity;
@@ -63,4 +61,5 @@ public class MatchMapper {
         tossEntity.setDecision(toss.getDecision());
         return tossEntity;
     }
+
 }
